@@ -19,7 +19,7 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
+    <body class="bg-gradient-to-br from-[#FDFDFC] to-[#f0f0f0] dark:from-[#0a0a0a] dark:to-[#1a1a1a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
@@ -50,11 +50,59 @@
             @endif
         </header>
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-            <main class="flex items-center justify-center w-full">
-                <div class="text-center">
-                    <h1 class="text-4xl lg:text-5xl font-bold text-[#F53003] dark:text-[#F61500] mb-4">StyleHub Online Shopping & Delivery System</h1>
-                    <p class="text-lg lg:text-xl text-[#706f6c] dark:text-[#A1A09A]">Your one-stop fashion store for trendy clothes delivered to your door</p>
+            <main class="flex flex-col items-center justify-center w-full max-w-4xl">
+                <!-- Hero Section -->
+                <div class="text-center mb-12">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto text-[#F53003] dark:text-[#F61500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-4xl lg:text-6xl font-bold text-[#F53003] dark:text-[#F61500] mb-4">StyleHub Online Shopping & Delivery System</h1>
+                    <p class="text-lg lg:text-xl text-[#706f6c] dark:text-[#A1A09A] max-w-2xl mx-auto">Your one-stop fashion store for trendy clothes delivered to your door</p>
                 </div>
+
+                <!-- Features Section -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 w-full">
+                    <div class="text-center p-6 bg-white dark:bg-[#161615] rounded-lg shadow-md">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-[#F53003] dark:text-[#F61500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <h3 class="text-xl font-semibold mb-2 text-[#1b1b18] dark:text-[#EDEDEC]">Trendy Clothes</h3>
+                        <p class="text-[#706f6c] dark:text-[#A1A09A]">Latest fashion trends at your fingertips</p>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-[#161615] rounded-lg shadow-md">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-[#F53003] dark:text-[#F61500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <h3 class="text-xl font-semibold mb-2 text-[#1b1b18] dark:text-[#EDEDEC]">Fast Delivery</h3>
+                        <p class="text-[#706f6c] dark:text-[#A1A09A]">Quick and reliable shipping worldwide</p>
+                    </div>
+                    <div class="text-center p-6 bg-white dark:bg-[#161615] rounded-lg shadow-md">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-[#F53003] dark:text-[#F61500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <h3 class="text-xl font-semibold mb-2 text-[#1b1b18] dark:text-[#EDEDEC]">Secure Payments</h3>
+                        <p class="text-[#706f6c] dark:text-[#A1A09A]">Safe and encrypted transactions</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center mb-16">
+                    <a href="#" class="inline-block px-8 py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors shadow-lg">
+                        Shop Now
+                    </a>
+                </div>
+
+                <!-- Footer -->
+                <footer class="text-center text-sm text-[#706f6c] dark:text-[#A1A09A]">
+                    <p>&copy; 2026 StyleHub. All rights reserved.</p>
+                    <div class="flex justify-center gap-4 mt-4">
+                        <a href="#" class="hover:text-[#F53003] dark:hover:text-[#F61500]">Facebook</a>
+                        <a href="#" class="hover:text-[#F53003] dark:hover:text-[#F61500]">Instagram</a>
+                        <a href="#" class="hover:text-[#F53003] dark:hover:text-[#F61500]">Twitter</a>
+                    </div>
+                </footer>
             </main>
         </div>
 
