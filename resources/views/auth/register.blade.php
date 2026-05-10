@@ -2,6 +2,59 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        {{-- Role Selection Cards --}}
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-3">I am joining as...</label>
+            <div class="grid grid-cols-3 gap-3" x-data="{ selected: '{{ old('role', 'customer') }}' }">
+
+                {{-- Customer --}}
+                <label class="cursor-pointer">
+                    <input type="radio" name="role" value="customer" class="sr-only"
+                           x-on:change="selected = 'customer'"
+                           {{ old('role', 'customer') === 'customer' ? 'checked' : '' }}>
+                    <div class="border-2 rounded-xl p-3 text-center transition-all duration-200"
+                         :class="selected === 'customer'
+                            ? 'border-orange-500 bg-orange-50 text-orange-700'
+                            : 'border-gray-200 bg-white text-gray-500 hover:border-orange-300'">
+                        <div class="text-2xl mb-1">🛍️</div>
+                        <div class="text-xs font-semibold leading-tight">Customer</div>
+                    </div>
+                </label>
+
+                {{-- Product Manager --}}
+                <label class="cursor-pointer">
+                    <input type="radio" name="role" value="product_manager" class="sr-only"
+                           x-on:change="selected = 'product_manager'"
+                           {{ old('role') === 'product_manager' ? 'checked' : '' }}>
+                    <div class="border-2 rounded-xl p-3 text-center transition-all duration-200"
+                         :class="selected === 'product_manager'
+                            ? 'border-orange-500 bg-orange-50 text-orange-700'
+                            : 'border-gray-200 bg-white text-gray-500 hover:border-orange-300'">
+                        <div class="text-2xl mb-1">📦</div>
+                        <div class="text-xs font-semibold leading-tight">Product Mgr</div>
+                    </div>
+                </label>
+
+                {{-- Admin --}}
+                <label class="cursor-pointer">
+                    <input type="radio" name="role" value="admin" class="sr-only"
+                           x-on:change="selected = 'admin'"
+                           {{ old('role') === 'admin' ? 'checked' : '' }}>
+                    <div class="border-2 rounded-xl p-3 text-center transition-all duration-200"
+                         :class="selected === 'admin'
+                            ? 'border-orange-500 bg-orange-50 text-orange-700'
+                            : 'border-gray-200 bg-white text-gray-500 hover:border-orange-300'">
+                        <div class="text-2xl mb-1">⚙️</div>
+                        <div class="text-xs font-semibold leading-tight">Admin</div>
+                    </div>
+                </label>
+
+            </div>
+            @error('role')
+                <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
