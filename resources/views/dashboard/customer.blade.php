@@ -5,8 +5,8 @@
         @php
             $links = [
                 ['href' => route('customer.dashboard'), 'icon' => '🏠', 'label' => 'My Dashboard'],
-                ['href' => '#', 'icon' => '🛒', 'label' => 'My Cart'],
-                ['href' => '#', 'icon' => '📦', 'label' => 'My Orders'],
+                ['href' => route('customer.cart.index'), 'icon' => '🛒', 'label' => 'My Cart'],
+                ['href' => route('customer.orders.index'), 'icon' => '📦', 'label' => 'My Orders'],
                 ['href' => '#', 'icon' => '🚚', 'label' => 'Track Delivery'],
                 ['href' => '#', 'icon' => '❤️', 'label' => 'Wishlist'],
                 ['href' => '#', 'icon' => '👤', 'label' => 'My Profile'],
@@ -29,7 +29,12 @@
         </h2>
         <p class="text-gray-500 text-sm mt-1">What would you like to shop for today?</p>
     </div>
-
+    @if(session('success'))
+        <div class="mb-5 bg-green-50 border border-green-200 text-green-800 text-sm px-4 py-3 rounded-xl">✅ {{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div class="mb-5 bg-red-50 border border-red-200 text-red-800 text-sm px-4 py-3 rounded-xl">❌ {{ session('error') }}</div>
+    @endif
     {{-- Stats --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
         @php
@@ -157,12 +162,18 @@
                             <p class="font-display font-bold text-lg text-gray-900">
                                 UGX {{ number_format($product->price) }}
                             </p>
-                            <button
-                                class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors
-                                       {{ $product->stock == 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
-                                {{ $product->stock == 0 ? 'disabled' : '' }}>
-                                🛒 Add to Cart
-                            </button>
+                            <form action="{{ route('customer.cart.store') }}" method="POST" class="inline-block">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button
+                                    type="submit"
+                                    class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors
+                                           {{ $product->stock == 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
+                                    {{ $product->stock == 0 ? 'disabled' : '' }}>
+                                    🛒 Add to Cart
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

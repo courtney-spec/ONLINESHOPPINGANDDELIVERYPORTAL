@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\CustomerCartController;
+use App\Http\Controllers\CustomerCheckoutController;
 use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\ProductManagerDashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -61,7 +64,14 @@ Route::middleware(['auth', 'role:customer'])
     ->name('customer.')
     ->group(function () {
         Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
-        // Add more customer routes here: shop, cart, orders, etc.
+            Route::get('/cart', [CustomerCartController::class, 'index'])->name('cart.index');
+        Route::post('/cart', [CustomerCartController::class, 'store'])->name('cart.store');
+        Route::patch('/cart/{product}', [CustomerCartController::class, 'update'])->name('cart.update');
+        Route::delete('/cart/{product}', [CustomerCartController::class, 'destroy'])->name('cart.destroy');
+        Route::get('/checkout', [CustomerCheckoutController::class, 'create'])->name('checkout.create');
+        Route::post('/checkout', [CustomerCheckoutController::class, 'store'])->name('checkout.store');
+        Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [CustomerOrderController::class, 'show'])->name('orders.show');
     });
 
     
