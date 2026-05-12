@@ -60,12 +60,17 @@ class CustomerCheckoutController extends Controller
             return redirect()->route('customer.dashboard')->with('error', 'Your cart is empty.');
         }
 
-        // Calculate total
+        // Calculate total and validate stock availability
         $total = 0;
         $items = [];
         foreach ($cart as $productId => $cartItem) {
             $product = Product::find($productId);
             if ($product) {
+                // Check if enough stock is available
+                if ($product->stock < $cartItem['quantity']) {
+                    return redirect()->route('customer.cart.index')->with('error', 'Not enough stock for ' . $product->name . '. Available: ' . $product->stock);
+                }
+
                 $subtotal = $product->price * $cartItem['quantity'];
                 $total += $subtotal;
                 $items[] = [
@@ -88,7 +93,7 @@ class CustomerCheckoutController extends Controller
             'customer_phone' => $data['phone'],
         ]);
 
-        // Create OrderItem records
+        // Create OrderItem records and reduce stock
         foreach ($items as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -96,6 +101,12 @@ class CustomerCheckoutController extends Controller
                 'quantity' => $item['quantity'],
                 'price' => $item['price'],
             ]);
+
+            // Reduce product stock
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                $product->reduceStock($item['quantity']);
+            }
         }
 
         // Clear the cart

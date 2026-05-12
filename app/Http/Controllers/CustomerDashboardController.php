@@ -20,7 +20,6 @@ class CustomerDashboardController extends Controller
             'total_orders'   => Order::where('user_id', $user->id)->count(),
             'pending_orders' => Order::where('user_id', $user->id)->where('status', 'pending')->count(),
             'cart_items'     => array_sum(array_column($cart, 'quantity')) ?: 0,
-            'wishlist'       => 0,
         ];
 
         // Products with search & category filter

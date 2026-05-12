@@ -5,13 +5,11 @@
         @php
             $links = [
                 ['href' => route('admin.dashboard'), 'icon' => '📊', 'label' => 'Dashboard'],
-                ['href' => '#', 'icon' => '👥', 'label' => 'Manage Users'],
+                ['href' => route('admin.users.index'), 'icon' => '👥', 'label' => 'Manage Users'],
                 ['href' => '#', 'icon' => '📦', 'label' => 'Products'],
-                ['href' => '#', 'icon' => '🛒', 'label' => 'Orders'],
+                ['href' => route('admin.orders.index'), 'icon' => '🛒', 'label' => 'Orders'],
                 ['href' => '#', 'icon' => '🚚', 'label' => 'Deliveries'],
-                ['href' => '#', 'icon' => '📁', 'label' => 'Categories'],
-                ['href' => '#', 'icon' => '📈', 'label' => 'Reports'],
-                ['href' => '#', 'icon' => '⚙️', 'label' => 'Settings'],
+                ['href' => '#', 'icon' => '�', 'label' => 'Reports'],
             ];
         @endphp
         @foreach($links as $link)
@@ -60,10 +58,10 @@
         <h3 class="font-display font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
             @foreach([
-                ['icon' => '👁️', 'label' => 'View Orders',  'href' => '#'],
-                ['icon' => '👤', 'label' => 'Manage Users', 'href' => '#'],
-                ['icon' => '📊', 'label' => 'View Reports', 'href' => '#'],
-                ['icon' => '📁', 'label' => 'Categories',   'href' => '#'],
+                ['icon' => '👁️', 'label' => 'View Orders',   'href' => route('admin.orders.index')],
+                ['icon' => '👤', 'label' => 'Manage Users',  'href' => route('admin.users.index')],
+                ['icon' => '📁', 'label' => 'Categories',    'href' => route('admin.categories.index')],
+                ['icon' => '📊', 'label' => 'View Reports',  'href' => '#'],
             ] as $action)
                 <a href="{{ $action['href'] }}"
                    class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-dashed border-gray-200
@@ -75,21 +73,6 @@
         </div>
     </div>
 
-    {{-- Categories Overview --}}
-    @if($categories->isNotEmpty())
-    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-8">
-        <h3 class="font-display font-semibold text-gray-900 mb-4">Categories Overview</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            @foreach($categories as $cat)
-                <div class="bg-gray-50 rounded-xl p-4 text-center">
-                    <div class="text-2xl mb-1">{{ $cat->icon ?? '📦' }}</div>
-                    <p class="text-sm font-semibold text-gray-800">{{ $cat->name }}</p>
-                    <p class="text-xs text-gray-400 mt-0.5">{{ $cat->products_count }} product(s)</p>
-                </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
 
     {{-- All Products Table --}}
     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">

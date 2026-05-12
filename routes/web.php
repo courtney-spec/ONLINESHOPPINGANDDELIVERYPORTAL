@@ -5,6 +5,9 @@ use App\Http\Controllers\CustomerCartController;
 use App\Http\Controllers\CustomerCheckoutController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CustomerOrderController;
+use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\ProductManagerDashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -45,7 +48,14 @@ Route::middleware(['auth', 'role:admin'])
     ->name('admin.')
     ->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-        // Add more admin routes here: users, orders, reports, etc.
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+        Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+        Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
+        Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+        Route::patch('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+        Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
     });
 
 // ── Product Manager Routes ────────────────────
@@ -74,5 +84,7 @@ Route::middleware(['auth', 'role:customer'])
         Route::get('/orders/{order}', [CustomerOrderController::class, 'show'])->name('orders.show');
     });
 
-    
+// ── Auth Routes ──────────────────────────────
+require __DIR__ . '/auth.php';
+
 

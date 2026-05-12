@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
 use Illuminate\View\View;
 
 class AdminDashboardController extends Controller
@@ -12,10 +13,10 @@ class AdminDashboardController extends Controller
     public function index(): View
     {
         $stats = [
-            'total_users'    => \App\Models\User::count(),
-            'total_orders'   => 0,
-            'total_products' => \App\Models\Product::count(),
-            'revenue'        => 0,
+            'total_users'    => User::count(),
+            'total_orders'   => Order::count(),
+            'total_products' => Product::count(),
+            'revenue'        => Order::sum('total'),
         ];
 
         $products   = Product::with('category')->latest()->get();

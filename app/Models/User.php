@@ -59,4 +59,11 @@ class User extends Authenticatable
             default           => 'customer.dashboard',
         };
     }
+
+    // ── Relationships ──────────────────────────
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

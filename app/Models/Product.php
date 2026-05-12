@@ -42,4 +42,14 @@ class Product extends Model
     {
         return $this->stock > 0 && $this->stock <= 5;
     }
+
+    public function reduceStock(int $quantity): bool
+    {
+        if ($this->stock < $quantity) {
+            return false; // Not enough stock
+        }
+
+        $this->decrement('stock', $quantity);
+        return true;
+    }
 }

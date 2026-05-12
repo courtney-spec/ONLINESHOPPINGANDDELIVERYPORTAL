@@ -7,9 +7,7 @@
                 ['href' => route('customer.dashboard'), 'icon' => '🏠', 'label' => 'My Dashboard'],
                 ['href' => route('customer.cart.index'), 'icon' => '🛒', 'label' => 'My Cart'],
                 ['href' => route('customer.orders.index'), 'icon' => '📦', 'label' => 'My Orders'],
-                ['href' => '#', 'icon' => '🚚', 'label' => 'Track Delivery'],
-                ['href' => '#', 'icon' => '❤️', 'label' => 'Wishlist'],
-                ['href' => '#', 'icon' => '👤', 'label' => 'My Profile'],
+                ['href' => route('profile.edit'), 'icon' => '👤', 'label' => 'My Profile'],
             ];
         @endphp
         @foreach($links as $link)
@@ -42,7 +40,6 @@
                 ['label' => 'Total Orders',   'value' => $stats['total_orders'],   'icon' => '📦', 'color' => 'bg-orange-500'],
                 ['label' => 'Pending Orders', 'value' => $stats['pending_orders'], 'icon' => '🕐', 'color' => 'bg-amber-500'],
                 ['label' => 'Cart Items',     'value' => $stats['cart_items'],     'icon' => '🛒', 'color' => 'bg-blue-500'],
-                ['label' => 'Wishlist',       'value' => $stats['wishlist'],       'icon' => '❤️', 'color' => 'bg-rose-500'],
             ];
         @endphp
         @foreach($cards as $card)
