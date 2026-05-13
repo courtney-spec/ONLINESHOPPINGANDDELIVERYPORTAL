@@ -9,7 +9,7 @@
                 ['href' => '#', 'icon' => '📦', 'label' => 'Products'],
                 ['href' => route('admin.orders.index'), 'icon' => '🛒', 'label' => 'Orders'],
                 ['href' => '#', 'icon' => '🚚', 'label' => 'Deliveries'],
-                ['href' => '#', 'icon' => '�', 'label' => 'Reports'],
+                ['href' => route('admin.reports'), 'icon' => '📈', 'label' => 'Reports'],
             ];
         @endphp
         @foreach($links as $link)
@@ -61,7 +61,7 @@
                 ['icon' => '👁️', 'label' => 'View Orders',   'href' => route('admin.orders.index')],
                 ['icon' => '👤', 'label' => 'Manage Users',  'href' => route('admin.users.index')],
                 ['icon' => '📁', 'label' => 'Categories',    'href' => route('admin.categories.index')],
-                ['icon' => '📊', 'label' => 'View Reports',  'href' => '#'],
+                ['icon' => '📊', 'label' => 'View Reports',  'href' => route('admin.reports')],
             ] as $action)
                 <a href="{{ $action['href'] }}"
                    class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-dashed border-gray-200

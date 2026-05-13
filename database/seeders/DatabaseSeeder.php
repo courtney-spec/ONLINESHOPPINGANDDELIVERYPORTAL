@@ -15,11 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create initial admin user (uncomment if needed)
+        // User::factory()->create([
+        //     'name' => 'Admin User',
+        //     'email' => 'admin@example.com',
+        // ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Uncomment the following lines if you want to seed dummy data for testing
+        // $this->call([
+        //     CategorySeeder::class,
+        //     ProductSeeder::class,
+        //     OrderSeeder::class,
+        // ]);
     }
 }
