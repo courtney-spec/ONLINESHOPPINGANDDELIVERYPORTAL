@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminDeliveryController;
+use App\Http\Controllers\CustomerDeliveryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
@@ -58,6 +60,13 @@ Route::middleware(['auth', 'role:admin'])
         Route::patch('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
         Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
         Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
+        Route::get('/deliveries', [AdminDeliveryController::class, 'index'])->name('deliveries.index');
+        Route::get('/deliveries/create', [AdminDeliveryController::class, 'create'])->name('deliveries.create');
+        Route::post('/deliveries', [AdminDeliveryController::class, 'store'])->name('deliveries.store');
+        Route::get('/deliveries/{delivery}', [AdminDeliveryController::class, 'show'])->name('deliveries.show');
+        Route::get('/deliveries/{delivery}/edit', [AdminDeliveryController::class, 'edit'])->name('deliveries.edit');
+        Route::patch('/deliveries/{delivery}', [AdminDeliveryController::class, 'update'])->name('deliveries.update');
+        
     });
 
 // ── Product Manager Routes ────────────────────
@@ -84,6 +93,7 @@ Route::middleware(['auth', 'role:customer'])
         Route::post('/checkout', [CustomerCheckoutController::class, 'store'])->name('checkout.store');
         Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{order}', [CustomerOrderController::class, 'show'])->name('orders.show');
+        Route::get('/orders/{order}/track', [CustomerDeliveryController::class, 'track'])->name('orders.track');
     });
 
 // ── Auth Routes ──────────────────────────────

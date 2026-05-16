@@ -6,9 +6,9 @@
             $links = [
                 ['href' => route('admin.dashboard'), 'icon' => '📊', 'label' => 'Dashboard'],
                 ['href' => route('admin.users.index'), 'icon' => '👥', 'label' => 'Manage Users'],
-                ['href' => '#', 'icon' => '📦', 'label' => 'Products'],
+                ['href' => route('admin.dashboard'),           'icon' => '📦', 'label' => 'Products'],
                 ['href' => route('admin.orders.index'), 'icon' => '🛒', 'label' => 'Orders'],
-                ['href' => '#', 'icon' => '🚚', 'label' => 'Deliveries'],
+                ['href' => route('admin.deliveries.index'), 'icon' => '🚚', 'label' => 'Deliveries'],
                 ['href' => route('admin.reports'), 'icon' => '📈', 'label' => 'Reports'],
             ];
         @endphp
